@@ -1,0 +1,23 @@
+{
+  "name": "inotebook-backend",
+  "version": "1.0.0",
+  "description": "iNotebook - Your notebook on the cloud",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Atul48649/iNotebook-backend.git"
+  },
+  "author": "Atul Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Atul48649/iNotebook-backend/issues"
+  },
+  "homepage": "https://github.com/Atul48649/iNotebook-backend#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "mongoose": "^6.1.8"
+  }
+}
