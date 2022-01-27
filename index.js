@@ -1,12 +1,14 @@
 const express = require('express');
 const app = express();
 const db = require('./config/mongoose');
-const port = 3000
+const port = 8000;
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+// use express router
+app.use('/api', require('./routes/index'));
+
+app.listen(port, function(err){
+    if(err){console.log(`Error in running the server: ${err}`); return;}
+    console.log(`Server is running on port: ${port}`)
 })
