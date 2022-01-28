@@ -15,7 +15,6 @@ module.exports.validate = function (method) {
 }
 
 module.exports.createUser = function (req, res) {
-
     try {
         // throw error in res.json if any
         const errors = validationResult(req);
@@ -25,15 +24,18 @@ module.exports.createUser = function (req, res) {
         }
 
         // check weather the user already exist in the db or not on the basis of email
-        User.findOne({ email: req.body.email }, function (err, user) {
+        User.findOne({ email: req.body.email }, async function (err, user) {
             if (err) { console.log('Error: ', err); return; }
+
+            const salt = await bcrypt.genSalt(10);
+            const securePassword = await bcrypt.hash(req.body.password, salt);
 
             // create a user
             if (!user) {
                 User.create({
                     name: req.body.name,
                     email: req.body.email,
-                    password: req.body.password
+                    password: securePassword
                 }, function (err, user) {
                     if (err) { console.log('Error: ', err); return; }
                     return res.status(200).json({
