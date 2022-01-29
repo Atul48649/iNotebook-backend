@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const notesSchema = new mongoose.Schema({
+const noteSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -21,6 +21,6 @@ const notesSchema = new mongoose.Schema({
     timestamps: true
 });
 
-const Notes = mongoose.model('Notes', notesSchema);
+const Note = mongoose.model('Note', noteSchema);
 
-module.exports = Notes;
+module.exports = Note;
