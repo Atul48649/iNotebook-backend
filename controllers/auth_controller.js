@@ -51,6 +51,7 @@ module.exports.createUser = function (req, res) {
                     }
                     return res.status(200).json({
                         message: 'User created successfully!',
+                        success: true,
                         data: {
                             name: user.name,
                             email: user.email,
@@ -61,6 +62,7 @@ module.exports.createUser = function (req, res) {
             } else {
                 return res.status(400).json({
                     message: 'User with this email already exist',
+                    success: false,
                     data: {
                         email: req.body.email
                     }
@@ -93,7 +95,8 @@ module.exports.login = function (req, res) {
             const comparePassword = await bcrypt.compare(req.body.password, user.password);
             if (!comparePassword) {
                 return res.status(400).json({
-                    error: 'Please try to login with valid credentials!'
+                    error: 'Please try to login with valid credentials!',
+                    success: false
                 });
             }
             const body = {
@@ -102,6 +105,7 @@ module.exports.login = function (req, res) {
             }
             return res.status(200).json({
                 message: 'Login successfully!',
+                success: true,
                 data: {
                     name: user.name,
                     email: user.email,

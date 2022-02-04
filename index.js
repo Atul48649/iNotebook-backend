@@ -1,8 +1,11 @@
 const express = require('express');
+var cors = require('cors')
 const app = express();
 const db = require('./config/mongoose');
 const port = 8000;
 const expressValidator = require('express-validator')
+
+app.use(cors())
 
 app.use(express.json());
 

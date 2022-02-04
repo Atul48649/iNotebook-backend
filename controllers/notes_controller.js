@@ -39,7 +39,9 @@ module.exports.createNote = function (req, res) {
             data: {
                 title: req.body.title,
                 description: req.body.description,
-                tag: req.body.tag
+                tag: req.body.tag,
+                _id: note._id
+                
             }
         });
     })
@@ -47,8 +49,9 @@ module.exports.createNote = function (req, res) {
 
 module.exports.getNotes = function (req, res) {
     try {
+        const token = req.header('auth-token');
         // get user id through the payload
-        const jwt_payload = jwt.decode(req.body.token);
+        const jwt_payload = jwt.decode(token);
         const userId = jwt_payload;
 
         // find notes with the userId
